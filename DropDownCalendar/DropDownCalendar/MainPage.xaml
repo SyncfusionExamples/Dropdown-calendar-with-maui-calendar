@@ -11,24 +11,27 @@
         <Entry Placeholder="Enter your name" Margin="0, 5"/>
         <Label Text="Date of birth:" Margin="0, 5"/>
         <Grid HorizontalOptions="Center" HeightRequest="50"  VerticalOptions="Start">
-        <Border x:Name="dateLabel" Margin="0, 5" VerticalOptions="Start" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 10, 10, 10, 10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="{Binding SelectedDateString}" Margin="10, 0, 5, 0" VerticalOptions="CenterAndExpand"/>
-                <Label Grid.Column="1" Text="&#x1F5D3;" Margin="5, 0" VerticalOptions="CenterAndExpand"/>
-            </Grid>
-        </Border>
+            <Border x:Name="dateLabel" Margin="0, 5" VerticalOptions="Start" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 10, 10, 10, 10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding SelectedDateString}" Margin="10, 0, 5, 0" VerticalOptions="CenterAndExpand"/>
+                    <Label Grid.Column="1" Text="&#x1F5D3;" Margin="5, 0" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+            </Border>
             <popup:SfPopup Grid.Row="1" x:Name="popup" ShowFooter="False" ShowOverlayAlways="False" WidthRequest="310" HeightRequest="370" ShowHeader="False" Padding="5, 10">
-            <popup:SfPopup.ContentTemplate>
-                <DataTemplate>
-                    <calendar:SfCalendar x:Name="calendar" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" View="{Binding CurrentView, Mode=TwoWay}" NavigationDirection="Horizontal" SelectionChanged="OnCalendarSelectionChanged" WidthRequest="300" HeightRequest="350" />
-                </DataTemplate>
-            </popup:SfPopup.ContentTemplate>
-        </popup:SfPopup>
-    </Grid>
+                <popup:SfPopup.PopupStyle>
+                    <popup:PopupStyle MessageBackground="White" Stroke="LightGray" StrokeThickness="2" CornerRadius="10" />
+                </popup:SfPopup.PopupStyle>
+                <popup:SfPopup.ContentTemplate>
+                    <DataTemplate>
+                        <calendar:SfCalendar x:Name="calendar" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" View="{Binding CurrentView, Mode=TwoWay}" NavigationDirection="Horizontal" SelectionChanged="OnCalendarSelectionChanged" WidthRequest="300" HeightRequest="350" />
+                    </DataTemplate>
+                </popup:SfPopup.ContentTemplate>
+            </popup:SfPopup>
+        </Grid>
         <Label Text="Email:" Margin="0, 5"/>
         <Entry Placeholder="Enter your mail" Margin="0, 5"/>
         <Button Text="Submit" HorizontalOptions="Center" Margin="0, 5"/>
