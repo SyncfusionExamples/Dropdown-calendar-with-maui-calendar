@@ -32,10 +32,31 @@ namespace DropDownCalendar
         /// <summary>
         /// Holds the calendar display date value.
         /// </summary>
-        private DateTime selectedDate = DateTime.Now;
+        private DateTime displayDate = DateTime.Now;
 
         /// <summary>
         /// Gets or sets the calendar display date value.
+        /// </summary>
+        public DateTime DisplayDate
+        {
+            get
+            {
+                return displayDate;
+            }
+            set
+            {
+                displayDate = value;
+                OnPropertyChanged("DisplayDate");
+            }
+        }
+
+        /// <summary>
+        /// Holds the calendar selected date value.
+        /// </summary>
+        private DateTime selectedDate = DateTime.Now;
+
+        /// <summary>
+        /// Gets or sets the calendar selected date value.
         /// </summary>
         public DateTime SelectedDate
         {

@@ -1,4 +1,5 @@
 ﻿using Syncfusion.Maui.Calendar;
+using Syncfusion.Maui.Popup;
 
 namespace DropDownCalendar;
 
@@ -21,19 +22,12 @@ public partial class MainPage : ContentPage
     /// <param name="e">The event argument details.</param>
     private void OnTapGestureTapped(object sender, EventArgs e)
     {
-        if (!calendar.IsVisible)
-        {
-            calendar.IsVisible = true;
-        }
-        else
-        {
-            calendar.IsVisible = false;
-            DropdownViewModel bindingContext = (DropdownViewModel)this.BindingContext;
-            //// Update the calendar display date value based on current selected date value for showing selected date month.
-            bindingContext.SelectedDate = DateTime.ParseExact(bindingContext.SelectedDateString, SelectedDateFormat, null);
-            //// Need to show month view while opening the calendar drop-down.
-            bindingContext.CurrentView = CalendarView.Month;
-        }
+        DropdownViewModel bindingContext = (DropdownViewModel)this.BindingContext;
+        //// Update the calendar display date value based on current selected date value for showing selected date month.
+        bindingContext.DisplayDate = bindingContext.SelectedDate;
+        //// Need to show month view while opening the calendar drop-down.
+        bindingContext.CurrentView = CalendarView.Month;
+        popup.ShowRelativeToView(dateLabel, PopupRelativePosition.AlignBottom, 0, 3);
     }
 
     /// <summary>
@@ -43,9 +37,12 @@ public partial class MainPage : ContentPage
     /// <param name="e">Selection related details.</param>
     private void OnCalendarSelectionChanged(object sender, CalendarSelectionChangedEventArgs e)
     {
-        DropdownViewModel bindingContext = (DropdownViewModel)this.BindingContext;
-        bindingContext.SelectedDateString = ((DateTime)e.NewValue).ToString(SelectedDateFormat);
+       DropdownViewModel bindingContext = (DropdownViewModel)this.BindingContext;
+       bindingContext.SelectedDateString = ((DateTime)e.NewValue).ToString(SelectedDateFormat);
         //// Close the calendar drop-down after selection.
-        calendar.IsVisible = false;
+        if (popup != null)
+        {
+            popup.IsOpen = false;
+        }
     }
 }
