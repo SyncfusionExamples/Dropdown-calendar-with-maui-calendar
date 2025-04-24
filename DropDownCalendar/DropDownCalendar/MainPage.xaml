@@ -4,6 +4,7 @@
               xmlns:local="clr-namespace:DropDownCalendar"
              xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
              xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             x:DataType="local:DropdownViewModel"
              x:Class="DropDownCalendar.MainPage">
     <StackLayout WidthRequest="310">
         <Label Text="User Details Form" HorizontalOptions="Center" FontSize="20" Margin="0, 5"/>
@@ -17,8 +18,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{Binding SelectedDateString}" Margin="10, 0, 5, 0" VerticalOptions="CenterAndExpand"/>
-                    <Label Grid.Column="1" Text="&#x1F5D3;" Margin="5, 0" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding SelectedDateString}" Margin="10, 0, 5, 0" VerticalOptions="Center"/>
+                    <Label Grid.Column="1" Text="&#x1F5D3;" Margin="5, 0" VerticalOptions="Center"/>
                 </Grid>
             </Border>
             <popup:SfPopup Grid.Row="1" x:Name="popup" ShowFooter="False" ShowOverlayAlways="False" WidthRequest="310" HeightRequest="370" ShowHeader="False" Padding="5, 10">
@@ -27,7 +28,7 @@
                 </popup:SfPopup.PopupStyle>
                 <popup:SfPopup.ContentTemplate>
                     <DataTemplate>
-                        <calendar:SfCalendar x:Name="calendar" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" View="{Binding CurrentView, Mode=TwoWay}" NavigationDirection="Horizontal" SelectionChanged="OnCalendarSelectionChanged" WidthRequest="300" HeightRequest="350" />
+                        <calendar:SfCalendar x:Name="calendar" x:DataType="local:DropdownViewModel" DisplayDate="{Binding DisplayDate, Mode=TwoWay}" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" View="{Binding CurrentView, Mode=TwoWay}" NavigationDirection="Horizontal" SelectionChanged="OnCalendarSelectionChanged" WidthRequest="300" HeightRequest="350" />
                     </DataTemplate>
                 </popup:SfPopup.ContentTemplate>
             </popup:SfPopup>
